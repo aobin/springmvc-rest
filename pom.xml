@@ -74,6 +74,14 @@
       <version>2.5.0</version>
     </dependency>
     <!-- json 配置 end-->
+
+    <!--导入外部的feed jar包-->
+    <dependency>
+      <groupId>com.aobin.rssfeed</groupId>
+      <artifactId>feed</artifactId>
+      <version>1.0</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>springmvc-rest</finalName>
