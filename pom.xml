@@ -54,6 +54,26 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.39</version>
     </dependency>
+
+    <!-- json 配置 start-->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.5.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.5.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.5.0</version>
+    </dependency>
+    <!-- json 配置 end-->
   </dependencies>
   <build>
     <finalName>springmvc-rest</finalName>
