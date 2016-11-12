@@ -1,9 +1,8 @@
 package com.aobin.entity;
 
-/**
- * Created by aobin on 11/11/2016.
- */
-public class Person
+import java.io.Serializable;
+
+public class Person implements Serializable
 {
     public Person()
     {

@@ -36,10 +36,39 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">
             <list>
-                <ref bean="stringConverter" />
-                <ref bean="jsonConverter" />
+                <ref bean="stringConverter"/>
+                <ref bean="jsonConverter"/>
             </list>
         </property>
     </bean>
 
+    <!--memcache配置-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/config/memcache.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="memcachedClientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder">
+        <constructor-arg>
+            <list>
+                <bean class="java.net.InetSocketAddress">
+                    <constructor-arg value="${memcache.ip}"/>
+                    <constructor-arg value="${memcache.port}"/>
+                </bean>
+            </list>
+        </constructor-arg>
+        <property name="connectionPoolSize" value="${memcache.pool.size}"/>
+        <property name="commandFactory">
+            <bean class="net.rubyeye.xmemcached.command.BinaryCommandFactory"/>
+        </property>
+        <property name="transcoder">
+            <bean class="net.rubyeye.xmemcached.transcoders.SerializingTranscoder"/>
+        </property>
+    </bean>
+
+    <bean id="memcachedClient" factory-bean="memcachedClientBuilder"
+          factory-method="build" destroy-method="shutdown"/>
 </beans>
