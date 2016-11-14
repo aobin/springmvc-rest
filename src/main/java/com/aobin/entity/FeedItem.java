@@ -18,13 +18,13 @@ public class FeedItem implements Serializable
 
     public FeedItem(Item item)
     {
-        this.title=item.getTitle();
-        this.link=item.getLink();
-        this.description=item.getDescription();
-        this.pubDate=item.getPubDate();
-        this.author=item.getAuthor();
-        this.guid=item.getGuid();
-        this.categories=item.getCategories();
+        this.title = item.getTitle();
+        this.link = item.getLink();
+        this.description = item.getDescription();
+        this.pubDate = item.getPubDate();
+        this.author = item.getAuthor();
+        this.guid = item.getGuid();
+        this.categories = item.getCategories();
     }
 
     public String getTitle()

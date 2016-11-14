@@ -69,6 +69,5 @@
         </property>
     </bean>
 
-    <bean id="memcachedClient" factory-bean="memcachedClientBuilder"
-          factory-method="build" destroy-method="shutdown"/>
+    <bean id="memcachedClient" factory-bean="memcachedClientBuilder" factory-method="build" destroy-method="shutdown"/>
 </beans>
