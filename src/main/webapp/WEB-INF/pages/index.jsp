@@ -28,5 +28,9 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>--%>
+
+<div id="feed-document"></div>
+<%--<script type="text/javascript" src="http://127.0.0.1:3000/build/feedItems.js"></script>--%>
 </body>
+
 </html>

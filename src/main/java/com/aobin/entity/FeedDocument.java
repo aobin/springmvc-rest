@@ -23,10 +23,16 @@ public class FeedDocument implements Serializable
     public FeedDocument(List<Item> items)
     {
         this.feedItems = new ArrayList<FeedItem>();
-        for (int i=0;i<items.size();i++)
+        for (int i = 0; i < items.size(); i++)
         {
             FeedItem feedItem = new FeedItem(items.get(i));
             this.feedItems.add(feedItem);
         }
     }
+
+    public FeedDocument()
+    {
+
+    }
+
 }

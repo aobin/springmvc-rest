@@ -1,17 +1,20 @@
 package com.aobin.controller;
 
 import com.aobin.entity.FeedDocument;
+import com.aobin.entity.FeedItem;
+import com.aobin.entity.Meta;
+import com.aobin.entity.MetaItems;
 import com.aobin.service.FeedParserService;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.exception.MemcachedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;
 
+import java.util.List;
 import java.util.concurrent.TimeoutException;
+
 
 @Controller
 public class MainController
@@ -39,7 +42,7 @@ public class MainController
     @ResponseBody
     String hello()
     {
-        return "你好！hello111";
+        return "hello111";
     }
 
     @RequestMapping(value = "/say/{msg}", produces = "application/json;charset=UTF-8")
@@ -54,6 +57,42 @@ public class MainController
     public
     @ResponseBody
     FeedDocument get()
+    {
+        FeedDocument feedDocument = this.getFeedDocumentFromMemcache();
+
+        return feedDocument;
+    }
+
+    @ControllerAdvice
+    static class JsonpAdvice extends AbstractJsonpResponseBodyAdvice
+    {
+        public JsonpAdvice()
+        {
+            super("callback");
+        }
+    }
+
+    @RequestMapping(value = "/feedItems", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    MetaItems getFeedItems(@RequestParam(value = "limit") int limit, @RequestParam(value = "offset") int offset)
+    {
+        FeedDocument feedDocument = this.getFeedDocumentFromMemcache();
+        Meta meta = null;
+        MetaItems metaItems = new MetaItems();
+        if (feedDocument != null && feedDocument.getFeedItems() != null && feedDocument.getFeedItems().size() > 0)
+        {
+            meta = new Meta(limit, offset, feedDocument.getFeedItems().size());
+        }
+        metaItems.setMeta(meta);
+        List<FeedItem> feedItems = feedDocument.getFeedItems().subList(offset,offset+limit);
+        feedDocument.setFeedItems(feedItems);
+        metaItems.setFeedDocument(feedDocument);
+
+        return metaItems;
+    }
+
+    private FeedDocument getFeedDocumentFromMemcache()
     {
         FeedDocument feedDocument = null;
         try
@@ -74,5 +113,4 @@ public class MainController
         }
         return feedDocument;
     }
-
 }
