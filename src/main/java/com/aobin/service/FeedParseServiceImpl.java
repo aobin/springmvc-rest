@@ -70,6 +70,7 @@ public class FeedParseServiceImpl implements FeedParserService
             FeedDocument feedDocument = new FeedDocument(items);
             try
             {
+                memcachedClient.delete("feedDocument");
                 memcachedClient.add("feedDocument", 0, feedDocument);
                 System.out.println("feedDocument saved into memcache");
             }
