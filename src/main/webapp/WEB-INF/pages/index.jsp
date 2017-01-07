@@ -10,6 +10,9 @@
 
 
     <script src="js/lib/jquery-1.11.1.min.js"></script>
+    <script src="js/lib/jquery-history.js"></script>
+    <script src="js/printer.js"></script>
+    <script src="js/main.js"></script>
 
 
 </head>
@@ -17,7 +20,12 @@
 <h1>这里是SpringMVC Demo首页222</h1>
 
 <h3>出现此页面，说明配置成功11。</h3>
-
+<input type="text" value="aaaaa"/>
+<button>aaaa</button><br/>
+<img src="/images/violin.png">
+<script type="text/javascript" language="JavaScript">
+    var main = new Main();
+</script>
 <%--<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 
