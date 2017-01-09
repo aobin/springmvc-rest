@@ -10,7 +10,7 @@
 
 
     <script src="js/lib/jquery-1.11.1.min.js"></script>
-    <script src="js/lib/jquery-history.js"></script>
+    <script src="js/lib/jquery.history.js"></script>
     <script src="js/printer.js"></script>
     <script src="js/main.js"></script>
 
